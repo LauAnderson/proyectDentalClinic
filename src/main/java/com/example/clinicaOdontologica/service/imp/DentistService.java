@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 //This annotation indicate that the class belongs to the service layer
 @Service
+
 
 //I indicate that the IDentistService interface methods will be implemented here
 public class DentistService implements IDentistService {
@@ -20,32 +22,35 @@ public class DentistService implements IDentistService {
     @Autowired
     IDentistRepository dentistRepository;
 
-
     //..................................OVERRIDE METHODS.........................................
     @Override
-    public Dentist save(Dentist dentist) {
-        return dentistRepository.save(dentist);
+    public void createDentist(Dentist dentist) {
+        dentistRepository.save(dentist);
+
     }
 
     @Override
-    public List<Dentist> findAll() {
-        return dentistRepository.findAll();
-    }
-
-    //PREGUNTAR
-    @Override
-    public Optional<Dentist> findById(Long id) {
-        return null;
+    public Dentist readDentist(Long id) {
+        //Evaluate the condition that a dentist is null
+        Dentist dentistFound = dentistRepository.findById(id).orElse(null);
+        return dentistFound;
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void modifyDentist(Dentist dentist) {
+        //ORM identifies whether the save call refers to a modification or the creation of a new record
+        dentistRepository.save(dentist);
+    }
+
+    @Override
+    public void deleteDentist(Long id) {
         dentistRepository.deleteById(id);
+
     }
 
     @Override
-    public void update(Dentist dentist) {
-        //This method belongs to the JpaRepository interface and allows us to perform an update
-        dentistRepository.saveAndFlush(dentist);
+    public Set<Dentist> bringAll() {
+        List<Dentist> dentists = dentistRepository.findAll();
+        return (Set<Dentist>) dentists;
     }
 }

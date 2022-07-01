@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 //......................................TABLE IN DB...................................................
-//With these annotations I create a table in the DB
+//With this annotation it indicates that turn is an entity in the db and that it creates a table with that name
 @Entity
 @Table
 
@@ -19,19 +19,24 @@ public class Turn {
     //These annotations are used to indicate that this is the id in the DB table
     //We make the configurations of its value
     @Id
-    @SequenceGenerator(name = "turno_sequence", sequenceName = "turno_sequence")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private LocalDateTime dateTime;
 
     //....................................TABLE MAPPING IN DB............................................
     //These annotations are used to map the turn with the dentist
     //The ManyToOne relationship indicates that many turns have one dentist
-    @ManyToOne
+    //FetchType.EAGER: indicates that the relation must be loaded at the time the entity is loaded
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "dentist_id", referencedColumnName = "id")
     private Dentist dentist;
 
     //The ManyToOne relationship indicates that many turns have one patient
+    //FetchType.EAGER: indicates that the relation must be loaded at the time the entity is loaded
+    //nullable = false: does not accept null values
     @ManyToOne
+    @JoinColumn(name = "patient_id", nullable = false, referencedColumnName = "id")
     private Patient patient;
 
 

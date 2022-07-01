@@ -1,5 +1,6 @@
 package com.example.clinicaOdontologica.service;
 
+import com.example.clinicaOdontologica.model.Address;
 import com.example.clinicaOdontologica.model.Dentist;
 import com.example.clinicaOdontologica.model.Patient;
 
@@ -8,14 +9,14 @@ import java.util.Optional;
 import java.util.Set;
 
 //In this class the crud methods are established, they will be implemented in the service.imp package
-public interface IDentistService {
-    //........................................METHODS.........................................
-    void createDentist(Dentist dentist);
-    Dentist readDentist(Long id);
-    void modifyDentist(Dentist dentist);
+public interface IAddressService {
 
-    void deleteDentist(Long id);
+    //.......................................METHODS.........................................
+    void createAddress(Address address);
 
-    Set<Dentist> bringAll();
+    void modifyAddress(Address address);
+
+    void deleteAddress(Long id);
+
 
 }

@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 //This annotation indicate that the class belongs to the service layer
 @Service
-
 
 //I indicate that the IPatientService interface methods will be implemented here
 public class PatientService implements IPatientService {
@@ -20,32 +20,37 @@ public class PatientService implements IPatientService {
     @Autowired
     IPatientRepository patientRepository;
 
-    //..................................OVERRIDE METHODS.........................................
+    //..................................OVERRIDE METHODS............................................
     @Override
-    public Patient save(Patient patient) {
-        return patientRepository.save(patient);
+    public void createPatient(Patient patient) {
+        patientRepository.save(patient);
+
     }
 
     @Override
-    public List<Patient> findAll() {
-        return patientRepository.findAll();
-    }
-
-    //ESTE PREGUNTAR
-    @Override
-    public Patient findById(Long id) {
-        return null;
+    public Patient readPatient(Long id) {
+        //Evaluate the condition that a patient is null
+        Patient patientFound = patientRepository.findById(id).orElse(null);
+        return patientFound;
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void modifyPatient(Patient patient) {
+        //ORM identifies whether the save call refers to a modification or the creation of a new record
+        patientRepository.save(patient);
+
+    }
+
+    @Override
+    public void deletePatient(Long id) {
         patientRepository.deleteById(id);
 
     }
 
     @Override
-    public void update(Patient patient) {
-        //This method belongs to the JpaRepository interface and allows us to perform an update
-        patientRepository.saveAndFlush(patient);
+    public Set<Patient> bringAll() {
+        List<Patient> patients = patientRepository.findAll();
+        return (Set<Patient>) patients;
     }
+
 }

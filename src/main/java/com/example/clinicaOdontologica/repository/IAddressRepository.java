@@ -1,6 +1,7 @@
 package com.example.clinicaOdontologica.repository;
 
-import com.example.clinicaOdontologica.model.Patient;
+
+import com.example.clinicaOdontologica.model.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,6 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 
 //This extends contains API for basic CRUD operations and also API for pagination and sorting
-public interface IPatientRepository extends JpaRepository<Patient, Long> {
-
+public interface IAddressRepository extends JpaRepository<Address, Long> {
 }

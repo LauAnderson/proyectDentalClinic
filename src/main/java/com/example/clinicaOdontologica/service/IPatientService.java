@@ -4,18 +4,16 @@ package com.example.clinicaOdontologica.service;
 
 import com.example.clinicaOdontologica.model.Patient;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
-//In this class the cruds methods are established, they will be implemented in the service.imp package
+//In this class the crud methods are established, they will be implemented in the service.imp package
 public interface IPatientService {
-    //....................................CRUD METHODS.........................................
-    Patient save(Patient patient);
-
-    List<Patient> findAll();
-
-    Patient findById(Long id);
-
-    void deleteById(Long id);
-
-    void update(Patient patient);
+    //........................................METHODS........................................
+    void createPatient(Patient patient);
+    Patient readPatient(Long id);
+    void modifyPatient(Patient patient);
+    void deletePatient(Long id);
+    Set<Patient> bringAll();
 }
