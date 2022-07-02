@@ -22,8 +22,8 @@ public class PatientService implements IPatientService {
 
     //..................................OVERRIDE METHODS............................................
     @Override
-    public void createPatient(Patient patient) {
-        patientRepository.save(patient);
+    public Patient createPatient(Patient patient) {
+       return patientRepository.save(patient);
 
     }
 
@@ -48,9 +48,9 @@ public class PatientService implements IPatientService {
     }
 
     @Override
-    public Set<Patient> bringAll() {
+    public List<Patient> bringAll() {
         List<Patient> patients = patientRepository.findAll();
-        return (Set<Patient>) patients;
+        return patients;
     }
 
 }

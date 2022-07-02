@@ -11,9 +11,9 @@ import java.util.Set;
 //In this class the crud methods are established, they will be implemented in the service.imp package
 public interface IPatientService {
     //........................................METHODS........................................
-    void createPatient(Patient patient);
+    Patient createPatient(Patient patient);
     Patient readPatient(Long id);
     void modifyPatient(Patient patient);
     void deletePatient(Long id);
-    Set<Patient> bringAll();
+    List<Patient> bringAll();
 }

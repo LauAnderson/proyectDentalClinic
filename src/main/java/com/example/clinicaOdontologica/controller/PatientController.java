@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Set;
+
 //Rest: restrictions
 //Controller:This annotation allows you to receive http requests and respond to them
 @RestController
@@ -22,35 +25,35 @@ public class PatientController {
     //................................HTTP REQUEST..................................................
 
     @PostMapping
-    //ResponseEntity<?>: return a status. In this case status ok (200)
+    //ResponseEntity<?>: return a status. In this case status ok (201)
     public ResponseEntity<?> savePatient(@RequestBody Patient patient){
-        patientService.createPatient(patient);
-        return ResponseEntity.ok(HttpStatus.OK);
+        Patient newPatient = patientService.createPatient(patient);
+        return new ResponseEntity(newPatient, HttpStatus.CREATED);
     }
 
     //Indicate that to do this get method in the path I must pass the id number
     @GetMapping("/{id}")
     //ResponseEntity<?>: return a status. In this case status ok (200)
     public ResponseEntity<?>  findPatient(@PathVariable Long id){
-        patientService.readPatient(id);
-        return ResponseEntity.ok(HttpStatus.OK);
+        Patient patientFound = patientService.readPatient(id);
+        return ResponseEntity.ok(patientFound);
     }
 
     @GetMapping
     //ResponseEntity<?>: return a status. In this case status ok (200)
     public ResponseEntity<?> listAll(){
-        patientService.bringAll();
-        return ResponseEntity.ok(HttpStatus.OK);
+        List<Patient> patients = patientService.bringAll();
+        return ResponseEntity.ok(patients);
     }
 
 
     //Indicate that to do this get method in the path I must pass the id number
     @DeleteMapping("/{id}")
-    //ResponseEntity<?>: return a status. In this case status ok (200)
+    //ResponseEntity<?>: return a status. In this case status ok (204)
     public ResponseEntity<?> deletePatient(@PathVariable Long id){
-        if(patientService.readPatient(id).equals(id))
+        if(patientService.readPatient(id).getId().equals(id))
             patientService.deletePatient(id);
-            return ResponseEntity.ok(HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping
