@@ -25,8 +25,7 @@ public class DentistService implements IDentistService {
     //..................................OVERRIDE METHODS.........................................
     @Override
     public Dentist createDentist(Dentist dentist) {
-       return dentistRepository.save(dentist);
-
+        return dentistRepository.save(dentist);
     }
 
     @Override

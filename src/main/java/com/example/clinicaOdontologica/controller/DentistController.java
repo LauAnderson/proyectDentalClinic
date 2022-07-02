@@ -26,22 +26,22 @@ public class DentistController {
     //................................HTTP REQUEST..................................................
     @PostMapping
     //ResponseEntity<?>: return a status. In this case status ok (201)
-    public ResponseEntity<?> saveDentist(@RequestBody Dentist dentist){
+    public ResponseEntity<?> saveDentist(@RequestBody Dentist dentist) {
         Dentist newDentist = dentistService.createDentist(dentist);
-        return new ResponseEntity(newDentist,HttpStatus.CREATED);
+        return new ResponseEntity(newDentist, HttpStatus.CREATED);
     }
 
     //Indicate that to do this get method in the path I must pass the id number
     @GetMapping("/{id}")
     //ResponseEntity<?>: return a status. In this case status ok (200)
-    public ResponseEntity<?>  findDentist(@PathVariable Long id){
+    public ResponseEntity<?> findDentist(@PathVariable Long id) {
         Dentist dentistFound = dentistService.readDentist(id);
         return ResponseEntity.ok(dentistFound);
     }
 
     @GetMapping
     //ResponseEntity<?>: return a status. In this case status ok (200)
-    public ResponseEntity<?> listAll(){
+    public ResponseEntity<?> listAll() {
         List<Dentist> dentists = dentistService.bringAll();
         return ResponseEntity.ok(dentists);
     }
@@ -49,15 +49,15 @@ public class DentistController {
     //Indicate that to do this get method in the path I must pass the id number
     @DeleteMapping("/{id}")
     //ResponseEntity<?>: return a status. In this case status ok (204)
-    public ResponseEntity<?> deleteDentist(@PathVariable Long id){
-        if(dentistService.readDentist(id).getId().equals(id))
+    public ResponseEntity<?> deleteDentist(@PathVariable Long id) {
+        if (dentistService.readDentist(id).getId().equals(id))
             dentistService.deleteDentist(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping
     //ResponseEntity<?>: return a status. In this case status ok (200)
-    public ResponseEntity<?> updateDentist(@RequestBody Dentist dentist){
+    public ResponseEntity<?> updateDentist(@RequestBody Dentist dentist) {
         dentistService.modifyDentist(dentist);
         return ResponseEntity.ok(HttpStatus.OK);
     }
