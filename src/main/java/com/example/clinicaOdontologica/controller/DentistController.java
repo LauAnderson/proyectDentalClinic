@@ -2,8 +2,10 @@ package com.example.clinicaOdontologica.controller;
 
 
 import com.example.clinicaOdontologica.model.Dentist;
+import com.example.clinicaOdontologica.model.Patient;
 import com.example.clinicaOdontologica.service.imp.DentistService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,38 +23,44 @@ public class DentistController {
     @Autowired
     private DentistService dentistService;
 
-    //................................HTTP REQUEST.................................................
+    //................................HTTP REQUEST..................................................
     @PostMapping
-    //RequestBody: is the data that is sent in the body of the post request. Here we send a dentist object
-    public void saveDentist(@RequestBody Dentist dentist){
-        dentistService.save(dentist);
+    //ResponseEntity<?>: return a status. In this case status ok (200)
+    public ResponseEntity<?> saveDentist(@RequestBody Dentist dentist){
+        dentistService.createDentist(dentist);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    //Indicate that to do this get method in the path I must pass the id number
+    @GetMapping("/{id}")
+    //ResponseEntity<?>: return a status. In this case status ok (200)
+    public ResponseEntity<?>  findDentist(@PathVariable Long id){
+        dentistService.readDentist(id);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @GetMapping
-    public List<Dentist> getAll() {
-        return dentistService.findAll();
+    //ResponseEntity<?>: return a status. In this case status ok (200)
+    public ResponseEntity<?> listAll(){
+        dentistService.bringAll();
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    //indicate that to do this get method in the path I must pass the id number
-    @GetMapping(path = "/{id}")
-    //ResponseEntity:represents an HTTP response, including headers, body, and statuse.
-    public ResponseEntity<Dentist> getById(@PathVariable Long id) {
-        Dentist dentistResponse = dentistService.findById(id);
-        //Indicate the status request is ok (200)
-        return ResponseEntity.ok(dentistResponse);
+    //Indicate that to do this get method in the path I must pass the id number
+    @DeleteMapping("/{id}")
+    //ResponseEntity<?>: return a status. In this case status ok (200)
+    public ResponseEntity<?> deleteDentist(@PathVariable Long id){
+        if(dentistService.readDentist(id).equals(id))
+            dentistService.deleteDentist(id);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    //indicate that to do this delete method in the path I must pass the id number
-    @DeleteMapping(path = "/{id}")
-    public void deleteById(@PathVariable Long id) {
-        dentistService.deleteById(id);
+    @PutMapping
+    //ResponseEntity<?>: return a status. In this case status ok (200)
+    public ResponseEntity<?> updateDentist(@RequestBody Dentist dentist){
+        dentistService.modifyDentist(dentist);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    //indicate that to do this put method in the path I must pass the id number
-    @PutMapping(path = "{id}")
-    //RequestBody: is the data that is sent in the body of the post request. Here we send a dentist object
-    public void putById(@PathVariable Long id, @RequestBody Dentist dentist) {
-        dentist.setId(id);
-        dentistService.update(dentist);
-    }
+
 }
