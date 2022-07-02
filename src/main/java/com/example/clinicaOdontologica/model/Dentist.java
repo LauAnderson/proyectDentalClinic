@@ -1,11 +1,16 @@
 package com.example.clinicaOdontologica.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
 //......................................TABLE IN DB...................................................
-//With these annotations I create a table in the DB
+//With this annotation it indicates that dentist is an entity in the db and that it creates a table with that name
 @Entity
 @Table
 
@@ -19,21 +24,20 @@ public class Dentist {
     //These annotations are used to indicate that this is the id in the DB table
     //We make the configurations of its value
     @Id
-    @SequenceGenerator(name = "odontologo_sequence", sequenceName = "odontologo_sequence")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String name;
     private String lastName;
-    private String registry;
+    private String tuition;
 
     //....................................TABLE MAPPING IN DB............................................
     //These annotations are used to map the dentist with the turn
     //The OneToMany relationship indicates that one dentist have many turns
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "turns_id", referencedColumnName = "id")
-    private Turn turn;
-    //DEBERÍA SETEAR LOS TURNOS EN UN LISTADO?
-    //Y CÓMO ESCRIBO ESTO EN TURNOS??
+    //FetchType.LAZY: the object is initialized only when required
+    @OneToMany(mappedBy = "dentist", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Turn> turnList = new HashSet<>();
 
 
     //..................................EMPTY BUILDER...................................................
@@ -41,9 +45,9 @@ public class Dentist {
     }
 
     //.................................BUILDER WITHOUT ID................................................
-    public Dentist(String name, String lastName, String registry) {
+    public Dentist(String name, String lastName, String tuition) {
         this.name = name;
         this.lastName = lastName;
-        this.registry = registry;
+        this.tuition = tuition;
     }
 }

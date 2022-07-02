@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 //......................................TABLE IN DB....................................................
-//With these annotations I create a table in the DB
+//With this annotation it indicates that address is an entity in the db and that it creates a table with that name
 @Entity
 @Table
 
@@ -18,10 +18,10 @@ public class Address {
 
     //....................................ATTRIBUTES...................................................
     //These annotations are used to indicate that this is the id in the DB table
-    //We make the configurations of its value
+    //We make the configurations of its value: autogenerate
     @Id
-    @SequenceGenerator(name = "domicilio_sequence", sequenceName = "domicilio_sequence")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String street;
     private Integer number;

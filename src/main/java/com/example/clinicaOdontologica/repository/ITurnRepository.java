@@ -9,6 +9,4 @@ import org.springframework.stereotype.Repository;
 
 //This extends contains API for basic CRUD operations and also API for pagination and sorting
 public interface ITurnRepository extends JpaRepository<Turn, Long> {
-
-    //Acá haría las querys y en service haría un método para llamarlas
 }

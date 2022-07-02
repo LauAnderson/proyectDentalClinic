@@ -1,24 +1,21 @@
 package com.example.clinicaOdontologica.service;
 
 import com.example.clinicaOdontologica.model.Dentist;
+import com.example.clinicaOdontologica.model.Patient;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
-//In this class the cruds methods are established, they will be implemented in the service.imp package
+//In this class the crud methods are established, they will be implemented in the service.imp package
 public interface IDentistService {
-    //....................................CRUD METHODS.........................................
+    //........................................METHODS.........................................
+    Dentist createDentist(Dentist dentist);
+    Dentist readDentist(Long id);
+    void modifyDentist(Dentist dentist);
 
+    void deleteDentist(Long id);
 
-    // GUARDAR → devolvemos Odontologo para saber qué ID tiene asignado
-    Dentist save(Dentist dentist);
-
-    List<Dentist> findAll();
-
-    Optional<Dentist> findById(Long id);
-
-    void deleteById(Long id);
-
-    void update(Dentist dentist);
+    List<Dentist> bringAll();
 
 }

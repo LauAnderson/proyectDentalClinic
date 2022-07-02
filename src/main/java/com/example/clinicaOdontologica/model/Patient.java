@@ -1,13 +1,16 @@
 package com.example.clinicaOdontologica.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 //......................................TABLE IN DB...................................................
-//With these annotations I create a table in the DB
+//With this annotation it indicates that patient is an entity in the db and that it creates a table with that name
 @Entity
 @Table
 
@@ -20,8 +23,8 @@ public class Patient {
    //These annotations are used to indicate that this is the id in the DB table
    //We make the configurations of its value
     @Id
-    @SequenceGenerator(name = "paciente_sequence", sequenceName = "paciente_sequence")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String name;
     private String lastName;
@@ -36,16 +39,12 @@ public class Patient {
     //With the JoinColumn annotation I indicate the mapping to the Address table through the id
     //This id in this table is a foreign key
     @JoinColumn(name = "address_id", referencedColumnName = "id")
-    private Address domicilio;
+    private Address address;
 
     //The OneToMany relationship indicates that one patient have many turns
-    @OneToMany (cascade = CascadeType.ALL)
-    //With the JoinColumn annotation I indicate the mapping to the Turn table through the id
-    //This id in this table is a foreign key
-    @JoinColumn(name = "turns_id", referencedColumnName = "id")
-    private Turn turno;
-    //DEBERIA SETEAR LOS TURNOS EN UN LISTADO??
-    //Y CÓMO ESCRIBO ESTO EN TURNOS??
+    @OneToMany(mappedBy = "patient")
+    @JsonIgnore
+    private Set<Turn> turnList = new HashSet<>();
 
 
     //..................................EMPTY BUILDER...................................................
@@ -58,6 +57,6 @@ public class Patient {
         this.lastName = lastName;
         this.dni = dni;
         this.admissionDate = admissionDate;
-        this.domicilio = address;
+        this.address = address;
     }
 }
