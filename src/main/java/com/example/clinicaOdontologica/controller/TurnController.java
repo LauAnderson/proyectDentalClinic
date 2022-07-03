@@ -1,6 +1,7 @@
 package com.example.clinicaOdontologica.controller;
 
 import com.example.clinicaOdontologica.model.Patient;
+import com.example.clinicaOdontologica.model.Turn;
 import com.example.clinicaOdontologica.model.dto.TurnDto;
 import com.example.clinicaOdontologica.service.imp.TurnService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,10 @@ public class TurnController {
 
     //................................HTTP REQUEST..................................................
     @PostMapping
-    //ResponseEntity<?>: return a status. In this case status ok (200)
+    //ResponseEntity<?>: return a status. In this case status ok (201)
     public ResponseEntity<?> saveTurn(@RequestBody TurnDto turn) {
-        turnService.createTurn(turn);
-        return ResponseEntity.ok(HttpStatus.OK);
+        Turn newTurn = turnService.createTurn(turn);
+        return new ResponseEntity(newTurn, HttpStatus.CREATED);
     }
 
 

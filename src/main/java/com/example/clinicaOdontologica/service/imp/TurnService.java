@@ -31,9 +31,9 @@ public class TurnService implements ITurnService {
 
     //..................................OVERRIDE METHODS.............................................
     @Override
-    public void createTurn(TurnDto turn) {
+    public Turn createTurn(TurnDto turn) {
         Turn newTurn = mapper.convertValue(turn, Turn.class);
-        turnRepository.save(newTurn);
+        return turnRepository.save(newTurn);
     }
 
     @Override

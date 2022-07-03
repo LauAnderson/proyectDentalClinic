@@ -2,13 +2,10 @@ package com.example.clinicaOdontologica.model.dto;
 
 import com.example.clinicaOdontologica.model.Dentist;
 import com.example.clinicaOdontologica.model.Patient;
-import com.fasterxml.jackson.annotation.JacksonAnnotation;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.jackson.JacksonProperties;
 
 import java.time.LocalDateTime;
 
@@ -25,8 +22,8 @@ public class TurnDto {
 
     //....................................ATTRIBUTES...................................................
     private Long id;
-    private Patient paciente;
-    private Dentist odontologo;
+    private Patient patient;
+    private Dentist dentist;
 
     //With this annotation I convert from LocalDateTime to String
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")

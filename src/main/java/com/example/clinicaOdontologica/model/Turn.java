@@ -1,5 +1,6 @@
 package com.example.clinicaOdontologica.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +23,9 @@ public class Turn {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
+
+    //With this annotation I convert from LocalDateTime to String
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateTime;
 
     //....................................TABLE MAPPING IN DB............................................
