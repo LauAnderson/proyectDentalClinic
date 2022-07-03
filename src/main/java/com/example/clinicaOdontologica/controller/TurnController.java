@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
+
 //Rest: restrictions
 //Controller:This annotation allows you to receive http requests and respond to them
 @RestController
@@ -34,8 +36,8 @@ public class TurnController {
     @GetMapping
     //ResponseEntity<?>: return a status. In this case status ok (200)
     public ResponseEntity<?> listAll() {
-        turnService.bringAll();
-        return ResponseEntity.ok(HttpStatus.OK);
+        Set<TurnDto> turns = turnService.bringAll();
+        return ResponseEntity.ok(turns);
 
     }
 }
