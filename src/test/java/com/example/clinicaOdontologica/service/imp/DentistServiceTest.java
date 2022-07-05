@@ -1,30 +1,39 @@
 package com.example.clinicaOdontologica.service.imp;
 
-import com.example.clinicaOdontologica.model.Dentist;
-import com.example.clinicaOdontologica.service.IDentistService;
+import com.example.clinicaOdontologica.model.Address;
+import com.example.clinicaOdontologica.model.Patient;
+import com.example.clinicaOdontologica.service.IPatientService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.time.LocalDate;
+
 
 @SpringBootTest
-class DentistServiceTest {
+class PatientServiceTest {
     //................................DEPENDENCY INJECTION.........................................
-    //With this annotation indicate that it brings the dependencies of IDentistService interface of
+    //With this annotation indicate that it brings the dependencies of IPatientService interface of
     //service package
     @Autowired
-    IDentistService dentistService;
+    IPatientService patientService;
 
     @Test
-    void createDentist() {
-        Dentist dentist = new Dentist();
-        dentist.setName("Marcos");
-        dentist.setLastName("Perez");
-        dentist.setTuition("MN 1234");
+    //I want to test the relationship between patient and address
+    void createPatient() {
+        //Set address
+        Address address1 = new Address("Street1", 123, "location1",
+                "province1");
+        Address address2 = new Address("Street2", 345, "location2",
+                "province2");
+        //Set patient
+        Patient patient1 = new Patient("Paul", "Mendez", "34567890",
+                LocalDate.of(2022, 07, 04),address1 );
+        Patient patient2 = new Patient("John", "Anderson", "26567591",
+                LocalDate.of(2022, 07, 05),address2 );
 
-        dentistService.createDentist(dentist);
-        assertTrue(dentistService.bringAll().size()>0);
+        patientService.createPatient(patient1);
+        patientService.createPatient(patient2);
 
     }
 }

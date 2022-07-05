@@ -1,6 +1,5 @@
 package com.example.clinicaOdontologica.controller;
 
-import com.example.clinicaOdontologica.model.Patient;
 import com.example.clinicaOdontologica.model.Turn;
 import com.example.clinicaOdontologica.model.dto.TurnDto;
 import com.example.clinicaOdontologica.service.imp.TurnService;
@@ -15,7 +14,7 @@ import java.util.Set;
 //Controller:This annotation allows you to receive http requests and respond to them
 @RestController
 
-//This annotation takes care of relating a method to http request. indicating that the path of the url is patients
+//This annotation takes care of relating a method http request. indicating that the path of the url is patients
 @RequestMapping(path = "/turns")
 
 public class TurnController {
