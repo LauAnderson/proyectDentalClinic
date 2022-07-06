@@ -1,6 +1,7 @@
 package com.example.dentalClinic.controller;
 
 
+import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Turn;
 import com.example.dentalClinic.model.dto.TurnDto;
 import com.example.dentalClinic.service.imp.TurnService;

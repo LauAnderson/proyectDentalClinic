@@ -1,5 +1,7 @@
 package com.example.dentalClinic.service.imp;
 
+
+import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Turn;
 import com.example.dentalClinic.model.dto.TurnDto;
 import com.example.dentalClinic.repository.ITurnRepository;
@@ -8,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.module.ResolutionException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,10 +40,10 @@ public class TurnService implements ITurnService {
     }
 
     @Override
-    public Turn readTurn(Long id){
+    public Turn readTurn(Long id)  {
         //Evaluate the condition that a patient is null
         Turn turnFound = turnRepository.findById(id).orElse(null);
-        return turnFound;
+            return turnFound;
 
     }
 
@@ -51,9 +54,8 @@ public class TurnService implements ITurnService {
     }
 
     @Override
-    public void deleteTurn(Long id) {
+    public void deleteTurn(Long id){
         turnRepository.deleteById(id);
-
     }
 
     @Override
