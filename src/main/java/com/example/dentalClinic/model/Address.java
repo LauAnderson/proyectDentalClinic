@@ -30,7 +30,8 @@ public class Address {
 
 
     //....................................TABLE MAPPING IN DB............................................
-    //We do not establish a relationship because we access to address from the patient
+    //We do not establish a relationship because we access to address from the patient.
+    //Because that reason I do not do an AddressService or AddressController or IAddressRepository
 
 
 
