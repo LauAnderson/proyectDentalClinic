@@ -1,9 +1,7 @@
 package com.example.dentalClinic.service.imp;
 
 import com.example.dentalClinic.model.Dentist;
-import com.example.dentalClinic.model.Patient;
 import com.example.dentalClinic.model.dto.DentistDto;
-import com.example.dentalClinic.model.dto.PatientDto;
 import com.example.dentalClinic.repository.IDentistRepository;
 import com.example.dentalClinic.service.IDentistService;
 import com.fasterxml.jackson.databind.ObjectMapper;

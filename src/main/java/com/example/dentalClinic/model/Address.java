@@ -31,7 +31,9 @@ public class Address {
 
     //....................................TABLE MAPPING IN DB............................................
     //We do not establish a relationship because we access to address from the patient.
-    //Because that reason I do not do an AddressService or AddressController or IAddressRepository
+    //Create AddressDto, AddressService, AddressRepository and AddressController in the case for
+    // my application needs to scale in the future. But in this project I don't use them because
+    // I access from patient
 
 
 
