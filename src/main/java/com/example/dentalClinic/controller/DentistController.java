@@ -2,6 +2,8 @@ package com.example.dentalClinic.controller;
 
 
 import com.example.dentalClinic.model.Dentist;
+import com.example.dentalClinic.model.dto.DentistDto;
+import com.example.dentalClinic.model.dto.PatientDto;
 import com.example.dentalClinic.service.imp.DentistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,7 +43,7 @@ public class DentistController {
     @GetMapping
     //ResponseEntity<?>: return a status. In this case status ok (200)
     public ResponseEntity<?> listAll() {
-        List<Dentist> dentists = dentistService.bringAll();
+        List<DentistDto> dentists = dentistService.bringAll();
         return ResponseEntity.ok(dentists);
     }
 

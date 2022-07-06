@@ -1,11 +1,16 @@
 package com.example.dentalClinic.service.imp;
 
 import com.example.dentalClinic.model.Dentist;
+import com.example.dentalClinic.model.Patient;
+import com.example.dentalClinic.model.dto.DentistDto;
+import com.example.dentalClinic.model.dto.PatientDto;
 import com.example.dentalClinic.repository.IDentistRepository;
 import com.example.dentalClinic.service.IDentistService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -20,6 +25,10 @@ public class DentistService implements IDentistService {
     //repository package
     @Autowired
     IDentistRepository dentistRepository;
+
+    //Allows me to convert from DentistDto
+    @Autowired
+    ObjectMapper mapper;
 
     //..................................OVERRIDE METHODS.........................................
     @Override
@@ -47,8 +56,12 @@ public class DentistService implements IDentistService {
     }
 
     @Override
-    public List<Dentist> bringAll() {
+    public List<DentistDto> bringAll() {
+        List<DentistDto> dentistDtos = new ArrayList<>();
         List<Dentist> dentists = dentistRepository.findAll();
-        return dentists;
+        for (Dentist dentist : dentists) {
+            dentistDtos.add(mapper.convertValue(dentist, DentistDto.class));
+        }
+        return dentistDtos;
     }
 }

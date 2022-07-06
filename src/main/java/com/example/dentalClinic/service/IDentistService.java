@@ -1,6 +1,7 @@
 package com.example.dentalClinic.service;
 
 import com.example.dentalClinic.model.Dentist;
+import com.example.dentalClinic.model.dto.DentistDto;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface IDentistService {
 
     void deleteDentist(Long id);
 
-    List<Dentist> bringAll();
+    List<DentistDto> bringAll();
 
 
 }
