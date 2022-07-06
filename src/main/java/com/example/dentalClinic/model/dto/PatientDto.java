@@ -1,12 +1,11 @@
+
 package com.example.dentalClinic.model.dto;
 
-import com.example.dentalClinic.model.Address;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-
 //....................................GETTER AND SETTERS..............................................
 //With this annotation generate automatically getters and setters
 @Getter
@@ -25,9 +24,10 @@ public class PatientDto {
     private String lastName;
     private String dni;
     private LocalDate admissionDate;
-    private Address address;
+
 
     //..................................EMPTY BUILDER...................................................
     public PatientDto() {
     }
+
 }

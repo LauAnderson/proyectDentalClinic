@@ -3,6 +3,7 @@ package com.example.dentalClinic.service;
 
 
 import com.example.dentalClinic.model.Patient;
+import com.example.dentalClinic.model.dto.PatientDto;
 
 import java.util.List;
 
@@ -13,5 +14,5 @@ public interface IPatientService {
     Patient readPatient(Long id);
     void modifyPatient(Patient patient);
     void deletePatient(Long id);
-    List<Patient> bringAll();
+    List<PatientDto> bringAll();
 }

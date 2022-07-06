@@ -1,6 +1,8 @@
 package com.example.dentalClinic.controller;
 
+
 import com.example.dentalClinic.model.Patient;
+import com.example.dentalClinic.model.dto.PatientDto;
 import com.example.dentalClinic.service.imp.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 //Rest: restrictions
 //Controller:This annotation allows you to receive http requests and respond to them
@@ -41,17 +44,18 @@ public class PatientController {
     @GetMapping
     //ResponseEntity<?>: return a status. In this case status ok (200)
     public ResponseEntity<?> listAll(){
-        List<Patient> patients = patientService.bringAll();
+        List<PatientDto> patients = patientService.bringAll();
         return ResponseEntity.ok(patients);
     }
 
 
     //Indicate that to do this get method in the path I must pass the id number
-    @DeleteMapping("/{id}")
+   @DeleteMapping("/{id}")
     //ResponseEntity<?>: return a status. In this case status no content (204)
     public ResponseEntity<?> deletePatient(@PathVariable Long id){
-        if(patientService.readPatient(id).getId().equals(id))
+        if(patientService.readPatient(id).getId().equals(id)) {
             patientService.deletePatient(id);
+        }
             return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
