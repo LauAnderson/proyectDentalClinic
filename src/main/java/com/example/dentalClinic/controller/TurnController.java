@@ -26,7 +26,7 @@ public class TurnController {
 
     //................................HTTP REQUEST..................................................
     @PostMapping
-    //ResponseEntity<?>: return a status. In this case status ok (201)
+    //ResponseEntity<?>: return a status. In this case status created (201)
     public ResponseEntity<?> saveTurn(@RequestBody TurnDto turn) {
         Turn newTurn = turnService.createTurn(turn);
         return new ResponseEntity(newTurn, HttpStatus.CREATED);
@@ -48,7 +48,7 @@ public class TurnController {
 
     }
     @DeleteMapping("/{id}")
-    //ResponseEntity<?>: return a status. In this case status ok (204)
+    //ResponseEntity<?>: return a status. In this case status no content (204)
     public ResponseEntity<?> deleteTurn(@PathVariable Long id){
         if(turnService.readTurn(id).getId().equals(id))
             turnService.deleteTurn(id);

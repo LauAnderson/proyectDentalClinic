@@ -24,7 +24,7 @@ public class PatientController {
     //................................HTTP REQUEST..................................................
 
     @PostMapping
-    //ResponseEntity<?>: return a status. In this case status ok (201)
+    //ResponseEntity<?>: return a status. In this case status created (201)
     public ResponseEntity<?> savePatient(@RequestBody Patient patient){
         Patient newPatient = patientService.createPatient(patient);
         return new ResponseEntity(newPatient, HttpStatus.CREATED);
@@ -48,7 +48,7 @@ public class PatientController {
 
     //Indicate that to do this get method in the path I must pass the id number
     @DeleteMapping("/{id}")
-    //ResponseEntity<?>: return a status. In this case status ok (204)
+    //ResponseEntity<?>: return a status. In this case status no content (204)
     public ResponseEntity<?> deletePatient(@PathVariable Long id){
         if(patientService.readPatient(id).getId().equals(id))
             patientService.deletePatient(id);
