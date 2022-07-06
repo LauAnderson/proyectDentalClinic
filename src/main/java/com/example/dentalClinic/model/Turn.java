@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 //......................................TABLE IN DB...................................................
@@ -11,9 +12,10 @@ import java.time.LocalDateTime;
 @Entity
 @Table
 
-//....................................GETTER AND SETTERS..............................................
+//....................................GETTER AND SETTERS...............................................
 //With this annotation generate automatically getters and setters
-@Getter @Setter
+@Getter
+@Setter
 
 public class Turn {
     //....................................ATTRIBUTES...................................................
@@ -53,4 +55,6 @@ public class Turn {
         this.dateTime = dateTime;
         this.dentist = dentist;
     }
+
+
 }

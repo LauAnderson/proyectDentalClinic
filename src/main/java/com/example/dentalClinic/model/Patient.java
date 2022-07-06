@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -14,9 +15,10 @@ import java.util.Set;
 @Entity
 @Table
 
-//....................................GETTER AND SETTERS..............................................
+//....................................GETTER AND SETTERS...............................................
 //With this annotation generate automatically getters and setters
-@Getter @Setter
+@Getter
+@Setter
 
 public class Patient {
     //....................................ATTRIBUTES...................................................

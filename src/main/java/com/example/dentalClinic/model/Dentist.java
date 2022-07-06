@@ -14,9 +14,10 @@ import java.util.Set;
 @Entity
 @Table
 
-//....................................GETTER AND SETTERS..............................................
+//....................................GETTER AND SETTERS...............................................
 //With this annotation generate automatically getters and setters
-@Getter @Setter
+@Getter
+@Setter
 
 public class Dentist {
 
