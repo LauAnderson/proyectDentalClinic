@@ -11,5 +11,11 @@ public interface ITurnService {
     //.......................................METHODS.........................................
     Turn createTurn(TurnDto turn);
 
+    Turn readTurn (Long id);
+
+    void modifyTurn(Turn turn);
+
+    void deleteTurn(Long id);
+
     Set<TurnDto> bringAll();
 }

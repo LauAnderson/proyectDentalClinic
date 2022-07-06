@@ -37,6 +37,26 @@ public class TurnService implements ITurnService {
     }
 
     @Override
+    public Turn readTurn(Long id){
+        //Evaluate the condition that a patient is null
+        Turn turnFound = turnRepository.findById(id).orElse(null);
+        return turnFound;
+
+    }
+
+    @Override
+    public void modifyTurn(Turn turn){
+        //ORM identifies whether the save call refers to a modification or the creation of a new record
+        turnRepository.save(turn);
+    }
+
+    @Override
+    public void deleteTurn(Long id) {
+        turnRepository.deleteById(id);
+
+    }
+
+    @Override
     public Set<TurnDto> bringAll() {
         List<Turn> turns = turnRepository.findAll();
         Set<TurnDto> turnDtos = new HashSet<TurnDto>();
