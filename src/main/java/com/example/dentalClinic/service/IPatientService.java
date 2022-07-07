@@ -2,6 +2,7 @@ package com.example.dentalClinic.service;
 
 
 
+import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Patient;
 import com.example.dentalClinic.model.dto.PatientDto;
 

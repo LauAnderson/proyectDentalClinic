@@ -1,6 +1,7 @@
 package com.example.dentalClinic.controller;
 
 
+import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Patient;
 import com.example.dentalClinic.model.dto.PatientDto;
 import com.example.dentalClinic.service.imp.PatientService;
@@ -35,10 +36,12 @@ public class PatientController {
 
     //Indicate that to do this get method in the path I must pass the id number
     @GetMapping("/{id}")
-    //ResponseEntity<?>: return a status. In this case status ok (200)
+    //ResponseEntity<?>: if patientId exists return a status. In this case status ok (200)
+    //Else return status not found (400)
     public ResponseEntity<?>  findPatient(@PathVariable Long id){
         Patient patientFound = patientService.readPatient(id);
         return ResponseEntity.ok(patientFound);
+
     }
 
     @GetMapping
@@ -52,10 +55,9 @@ public class PatientController {
     //Indicate that to do this get method in the path I must pass the id number
    @DeleteMapping("/{id}")
     //ResponseEntity<?>: return a status. In this case status no content (204)
-    public ResponseEntity<?> deletePatient(@PathVariable Long id){
-        if(patientService.readPatient(id).getId().equals(id)) {
+    public ResponseEntity<?> deletePatient(@PathVariable Long id) {
+        if(patientService.readPatient(id).getId().equals(id))
             patientService.deletePatient(id);
-        }
             return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 

@@ -12,12 +12,12 @@ import org.springframework.web.context.request.WebRequest;
 @ControllerAdvice
 public class GlobalExceptionHandler {
     //Initialize the loggers
-    private final static Logger logger = Logger.getLogger(GlobalExceptionHandler.class);
+    private static final Logger logger = Logger.getLogger(GlobalExceptionHandler.class);
 
-    @ExceptionHandler({ResourceNotFoundException.class})
-    public ResponseEntity<?> processErrorNotFound(ResourceNotFoundException ex){
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> processAllError(Exception ex, WebRequest req){
         logger.error(ex.getMessage());
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        return new ResponseEntity("Error " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 
     }
 }

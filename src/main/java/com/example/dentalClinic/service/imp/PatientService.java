@@ -48,7 +48,8 @@ public class PatientService implements IPatientService {
     }
 
     @Override
-    public void deletePatient(Long id) {
+    public void deletePatient(Long id){
+
         patientRepository.deleteById(id);
 
     }

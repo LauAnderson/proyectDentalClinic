@@ -8,12 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DentalClinicApplication {
 
 	public static void main(String[] args) {
-
-		//Indicate de log4j.properties
-		PropertyConfigurator.configure("log4j.properties");
-
 		SpringApplication.run(DentalClinicApplication.class, args);
 
+		//Indicate de log4j.properties
+		PropertyConfigurator.configure("src/main/log4j.properties");
 	}
 
 }
