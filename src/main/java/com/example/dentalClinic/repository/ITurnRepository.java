@@ -1,6 +1,6 @@
 package com.example.dentalClinic.repository;
 
-import com.example.dentalClinic.model.Turn;
+import com.example.dentalClinic.model.Appointment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 
 //This extends contains API for basic CRUD operations and also API for pagination and sorting
-public interface ITurnRepository extends JpaRepository<Turn, Long> {
+public interface ITurnRepository extends JpaRepository<Appointment, Long> {
 }

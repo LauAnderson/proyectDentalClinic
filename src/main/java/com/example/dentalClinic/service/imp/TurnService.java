@@ -1,8 +1,7 @@
 package com.example.dentalClinic.service.imp;
 
 
-import com.example.dentalClinic.exceptions.ResourceNotFoundException;
-import com.example.dentalClinic.model.Turn;
+import com.example.dentalClinic.model.Appointment;
 import com.example.dentalClinic.model.dto.TurnDto;
 import com.example.dentalClinic.repository.ITurnRepository;
 import com.example.dentalClinic.service.ITurnService;
@@ -10,7 +9,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.module.ResolutionException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -34,23 +32,23 @@ public class TurnService implements ITurnService {
 
     //..................................OVERRIDE METHODS.............................................
     @Override
-    public Turn createTurn(TurnDto turn) {
-        Turn newTurn = mapper.convertValue(turn, Turn.class);
-        return turnRepository.save(newTurn);
+    public Appointment createTurn(TurnDto turn) {
+        Appointment newAppointment = mapper.convertValue(turn, Appointment.class);
+        return turnRepository.save(newAppointment);
     }
 
     @Override
-    public Turn readTurn(Long id)  {
+    public Appointment readTurn(Long id)  {
         //Evaluate the condition that a patient is null
-        Turn turnFound = turnRepository.findById(id).orElse(null);
-            return turnFound;
+        Appointment appointmentFound = turnRepository.findById(id).orElse(null);
+            return appointmentFound;
 
     }
 
     @Override
-    public void modifyTurn(Turn turn){
+    public void modifyTurn(Appointment appointment){
         //ORM identifies whether the save call refers to a modification or the creation of a new record
-        turnRepository.save(turn);
+        turnRepository.save(appointment);
     }
 
     @Override
@@ -60,10 +58,10 @@ public class TurnService implements ITurnService {
 
     @Override
     public Set<TurnDto> bringAll() {
-        List<Turn> turns = turnRepository.findAll();
+        List<Appointment> appointments = turnRepository.findAll();
         Set<TurnDto> turnDtos = new HashSet<TurnDto>();
-        for(Turn turn : turns )
-            turnDtos.add(mapper.convertValue(turn,TurnDto.class));
+        for(Appointment appointment : appointments)
+            turnDtos.add(mapper.convertValue(appointment,TurnDto.class));
 
         return turnDtos;
     }

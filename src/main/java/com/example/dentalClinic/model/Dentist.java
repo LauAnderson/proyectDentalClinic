@@ -18,7 +18,6 @@ import java.util.Set;
 //With this annotation generate automatically getters and setters
 @Getter
 @Setter
-
 public class Dentist {
 
     //....................................ATTRIBUTES...................................................
@@ -26,7 +25,6 @@ public class Dentist {
     //We make the configurations of its value
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
     private String name;
     private String lastName;
@@ -38,7 +36,7 @@ public class Dentist {
     //FetchType.LAZY: the object is initialized only when required
     @OneToMany(mappedBy = "dentist", fetch = FetchType.LAZY)
     @JsonIgnore
-    private Set<Turn> turnList = new HashSet<>();
+    private Set<Appointment> appointments = new HashSet<>();
 
 
     //..................................EMPTY BUILDER...................................................

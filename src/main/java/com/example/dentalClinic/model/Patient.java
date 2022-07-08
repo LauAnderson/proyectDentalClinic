@@ -22,8 +22,8 @@ import java.util.Set;
 
 public class Patient {
     //....................................ATTRIBUTES...................................................
-   //These annotations are used to indicate that this is the id in the DB table
-   //We make the configurations of its value
+    //These annotations are used to indicate that this is the id in the DB table
+    //We make the configurations of its value
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -37,7 +37,7 @@ public class Patient {
     //....................................TABLE MAPPING IN DB............................................
     //These annotations are used to map the patient with the address
     //The OneToOne relationship indicates that one patient have one address
-    @OneToOne (cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     //With the JoinColumn annotation I indicate the mapping to the Address table through the id
     //This id in this table is a foreign key
     @JoinColumn(name = "address_id", referencedColumnName = "id")
@@ -46,7 +46,7 @@ public class Patient {
     //The OneToMany relationship indicates that one patient have many turns
     @OneToMany(mappedBy = "patient")
     @JsonIgnore
-    private Set<Turn> turnList = new HashSet<>();
+    private Set<Appointment> appointments = new HashSet<>();
 
 
     //..................................EMPTY BUILDER...................................................

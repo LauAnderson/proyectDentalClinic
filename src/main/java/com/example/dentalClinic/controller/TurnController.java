@@ -1,8 +1,7 @@
 package com.example.dentalClinic.controller;
 
 
-import com.example.dentalClinic.exceptions.ResourceNotFoundException;
-import com.example.dentalClinic.model.Turn;
+import com.example.dentalClinic.model.Appointment;
 import com.example.dentalClinic.model.dto.TurnDto;
 import com.example.dentalClinic.service.imp.TurnService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,16 +28,16 @@ public class TurnController {
     @PostMapping
     //ResponseEntity<?>: return a status. In this case status created (201)
     public ResponseEntity<?> saveTurn(@RequestBody TurnDto turn) {
-        Turn newTurn = turnService.createTurn(turn);
-        return new ResponseEntity(newTurn, HttpStatus.CREATED);
+        Appointment newAppointment = turnService.createTurn(turn);
+        return new ResponseEntity(newAppointment, HttpStatus.CREATED);
     }
 
     //Indicate that to do this get method in the path I must pass the id number
     @GetMapping("/{id}")
     //ResponseEntity<?>: return a status. In this case status ok (200)
     public ResponseEntity<?>  findTurn(@PathVariable Long id){
-        Turn turnFound = turnService.readTurn(id);
-        return ResponseEntity.ok(turnFound);
+        Appointment appointmentFound = turnService.readTurn(id);
+        return ResponseEntity.ok(appointmentFound);
     }
 
     @GetMapping
@@ -58,8 +57,8 @@ public class TurnController {
 
     @PutMapping
     //ResponseEntity<?>: return a status. In this case status ok (200)
-    public ResponseEntity<?> updateTurn(@RequestBody Turn turn) {
-        turnService.modifyTurn(turn);
+    public ResponseEntity<?> updateTurn(@RequestBody Appointment appointment) {
+        turnService.modifyTurn(appointment);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 }

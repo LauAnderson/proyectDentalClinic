@@ -1,5 +1,6 @@
 package com.example.dentalClinic.service.imp;
 
+import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Dentist;
 import com.example.dentalClinic.model.dto.DentistDto;
 import com.example.dentalClinic.repository.IDentistRepository;
@@ -7,6 +8,7 @@ import com.example.dentalClinic.service.IDentistService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,10 +37,13 @@ public class DentistService implements IDentistService {
     }
 
     @Override
-    public Dentist readDentist(Long id) {
+    // .orElseThrow(()) I convert the exception to supplier(function) of type <T>. I pass
+    // as parameter a portion of code to execute
+    public Dentist readDentist(Long id) throws ResourceNotFoundException {
         //Evaluate the condition that a dentist is null
-        Dentist dentistFound = dentistRepository.findById(id).orElse(null);
-        return dentistFound;
+        return dentistRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Don`t exist the dentist with id " + id + " please enter a correct id"));
+
     }
 
     @Override
@@ -48,8 +53,12 @@ public class DentistService implements IDentistService {
     }
 
     @Override
-    public void deleteDentist(Long id) {
-        dentistRepository.deleteById(id);
+    // .orElseThrow(()) I convert the exception to supplier(function) of type <T>. I pass
+    // as parameter a portion of code to execute
+    public void deleteDentist(Long id) throws ResourceNotFoundException {
+        Dentist dentistFound = dentistRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Don`t exist the dentist with id " + id + " please enter a correct id"));
+        dentistRepository.deleteById(dentistFound.getId());
 
     }
 

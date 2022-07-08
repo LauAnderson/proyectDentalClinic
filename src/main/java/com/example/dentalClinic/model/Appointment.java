@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 
-public class Turn {
+public class Appointment {
     //....................................ATTRIBUTES...................................................
     //These annotations are used to indicate that this is the id in the DB table
     //We make the configurations of its value
@@ -47,11 +47,11 @@ public class Turn {
 
 
     //..................................EMPTY BUILDER...................................................
-    public Turn() {
+    public Appointment() {
     }
 
     //.................................BUILDER WITHOUT ID................................................
-    public Turn(LocalDateTime dateTime, Dentist dentist) {
+    public Appointment(LocalDateTime dateTime, Dentist dentist) {
         this.dateTime = dateTime;
         this.dentist = dentist;
     }

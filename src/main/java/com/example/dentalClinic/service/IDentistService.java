@@ -1,5 +1,6 @@
 package com.example.dentalClinic.service;
 
+import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Dentist;
 import com.example.dentalClinic.model.dto.DentistDto;
 
@@ -11,11 +12,11 @@ public interface IDentistService {
 
     Dentist createDentist(Dentist dentist);
 
-    Dentist readDentist(Long id);
+    Dentist readDentist(Long id) throws ResourceNotFoundException;
 
     void modifyDentist(Dentist dentist);
 
-    void deleteDentist(Long id);
+    void deleteDentist(Long id) throws ResourceNotFoundException;
 
     List<DentistDto> bringAll();
 
