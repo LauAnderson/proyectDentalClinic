@@ -15,10 +15,18 @@ public class GlobalExceptionHandler {
     //Initialize the loggers
     private static final Logger logger = Logger.getLogger(GlobalExceptionHandler.class);
 
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<?> processAllErrorNotFound(Exception ex, WebRequest req){
+        logger.error(ex.getMessage());
+        return new ResponseEntity("ERROR " + ex.getMessage(), HttpStatus.NOT_FOUND);
+
+    }
+
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> processAllError(Exception ex, WebRequest req){
         logger.error(ex.getMessage());
-        return new ResponseEntity("ERROR" + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity("ERROR " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 
     }
 }

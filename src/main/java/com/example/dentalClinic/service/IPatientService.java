@@ -1,7 +1,6 @@
 package com.example.dentalClinic.service;
 
 
-
 import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Patient;
 import com.example.dentalClinic.model.dto.PatientDto;
@@ -12,8 +11,12 @@ import java.util.List;
 public interface IPatientService {
     //........................................METHODS........................................
     Patient createPatient(Patient patient);
-    Patient readPatient(Long id);
+
+    Patient readPatient(Long id) throws ResourceNotFoundException;
+
     void modifyPatient(Patient patient);
-    void deletePatient(Long id);
+
+    void deletePatient(Long id) throws ResourceNotFoundException;
+
     List<PatientDto> bringAll();
 }

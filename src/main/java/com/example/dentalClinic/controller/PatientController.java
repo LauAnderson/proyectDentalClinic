@@ -29,7 +29,7 @@ public class PatientController {
 
     @PostMapping
     //ResponseEntity<?>: return a status. In this case status created (201)
-    public ResponseEntity<?> savePatient(@RequestBody Patient patient){
+    public ResponseEntity<?> savePatient(@RequestBody Patient patient) {
         Patient newPatient = patientService.createPatient(patient);
         return new ResponseEntity(newPatient, HttpStatus.CREATED);
     }
@@ -38,7 +38,7 @@ public class PatientController {
     @GetMapping("/{id}")
     //ResponseEntity<?>: if patientId exists return a status. In this case status ok (200)
     //Else return status not found (400)
-    public ResponseEntity<?>  findPatient(@PathVariable Long id){
+    public ResponseEntity<?> findPatient(@PathVariable Long id) throws ResourceNotFoundException {
         Patient patientFound = patientService.readPatient(id);
         return ResponseEntity.ok(patientFound);
 
@@ -46,24 +46,24 @@ public class PatientController {
 
     @GetMapping
     //ResponseEntity<?>: return a status. In this case status ok (200)
-    public ResponseEntity<?> listAll(){
+    public ResponseEntity<?> listAll() {
         List<PatientDto> patients = patientService.bringAll();
         return ResponseEntity.ok(patients);
     }
 
 
     //Indicate that to do this get method in the path I must pass the id number
-   @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")
     //ResponseEntity<?>: return a status. In this case status no content (204)
-    public ResponseEntity<?> deletePatient(@PathVariable Long id) throws ResourceNotFoundException{
-        if(patientService.readPatient(id).getId().equals(id))
+    public ResponseEntity<?> deletePatient(@PathVariable Long id) throws ResourceNotFoundException {
+        if (patientService.readPatient(id).getId().equals(id))
             patientService.deletePatient(id);
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping
     //ResponseEntity<?>: return a status. In this case status ok (200)
-    public ResponseEntity<?> updatePatient(@RequestBody Patient patient){
+    public ResponseEntity<?> updatePatient(@RequestBody Patient patient) {
         patientService.modifyPatient(patient);
         return ResponseEntity.ok(HttpStatus.OK);
 

@@ -18,6 +18,7 @@ import java.util.List;
 
 //I indicate that the IPatientService interface methods will be implemented here
 public class PatientService implements IPatientService {
+
     //................................DEPENDENCY INJECTION.........................................
     //With this annotation indicate that it brings the dependencies of IPatientRepository interface of
     //repository package
@@ -28,6 +29,7 @@ public class PatientService implements IPatientService {
     @Autowired
     ObjectMapper mapper;
 
+
     //..................................OVERRIDE METHODS............................................
     @Override
     public Patient createPatient(Patient patient) {
@@ -35,11 +37,15 @@ public class PatientService implements IPatientService {
     }
 
     @Override
-    public Patient readPatient(Long id) {
+    // .orElseThrow(()) I convert the exception to supplier(function) of type <T>. I pass
+    // as parameter a portion of code to execute
+    public Patient readPatient(Long id) throws ResourceNotFoundException {
         //Evaluate the condition that a patient is null
-        Patient patientFound = patientRepository.findById(id).orElse(null);
-        return patientFound;
+        return patientRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Don`t exist the patient with id " + id + " please enter a correct id"));
+
     }
+
 
     @Override
     public void modifyPatient(Patient patient) {
@@ -49,8 +55,13 @@ public class PatientService implements IPatientService {
     }
 
     @Override
-    public void deletePatient(Long id) {
-            patientRepository.deleteById(id);
+    // .orElseThrow(()) I convert the exception to supplier(function) of type <T>. I pass
+    // as parameter a portion of code to execute
+    public void deletePatient(Long id) throws ResourceNotFoundException {
+        Patient patientFound = patientRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Don`t exist the patient " +
+                        "with id " + id + " please enter a correct id"));
+        patientRepository.deleteById(patientFound.getId());
     }
 
     @Override
