@@ -4,8 +4,8 @@ package com.example.dentalClinic.exceptions;
 public class ResourceNotFoundException extends Exception{
 
     //..................................BUILDER.........................................
-    public ResourceNotFoundException (String mesage){
-        super(mesage);
+    public ResourceNotFoundException (String message){
+        super(message);
     }
 
 }

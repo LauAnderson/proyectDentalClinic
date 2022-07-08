@@ -1,5 +1,6 @@
 package com.example.dentalClinic.service.imp;
 
+import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Patient;
 import com.example.dentalClinic.model.dto.PatientDto;
 import com.example.dentalClinic.repository.IPatientRepository;
@@ -48,10 +49,8 @@ public class PatientService implements IPatientService {
     }
 
     @Override
-    public void deletePatient(Long id){
-
-        patientRepository.deleteById(id);
-
+    public void deletePatient(Long id) {
+            patientRepository.deleteById(id);
     }
 
     @Override

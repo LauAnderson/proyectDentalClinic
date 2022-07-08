@@ -55,7 +55,7 @@ public class PatientController {
     //Indicate that to do this get method in the path I must pass the id number
    @DeleteMapping("/{id}")
     //ResponseEntity<?>: return a status. In this case status no content (204)
-    public ResponseEntity<?> deletePatient(@PathVariable Long id) {
+    public ResponseEntity<?> deletePatient(@PathVariable Long id) throws ResourceNotFoundException{
         if(patientService.readPatient(id).getId().equals(id))
             patientService.deletePatient(id);
             return new ResponseEntity(HttpStatus.NO_CONTENT);

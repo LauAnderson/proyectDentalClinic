@@ -11,7 +11,7 @@ public class DentalClinicApplication {
 		SpringApplication.run(DentalClinicApplication.class, args);
 
 		//Indicate de log4j.properties
-		PropertyConfigurator.configure("src/main/log4j.properties");
+		PropertyConfigurator.configure("src/log4j.properties");
 	}
 
 }

@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
 
-//Annotation to handle exceptions
+//In this class generate a method for error http 500. Indicate with the attribute static that logger the
+//error use it log4j. And show the response in the file: dentalClinic_errors.log
 @ControllerAdvice
 public class GlobalExceptionHandler {
     //Initialize the loggers
@@ -17,7 +18,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> processAllError(Exception ex, WebRequest req){
         logger.error(ex.getMessage());
-        return new ResponseEntity("Error " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity("ERROR" + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 
     }
 }
