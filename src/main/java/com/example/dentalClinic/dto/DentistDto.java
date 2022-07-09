@@ -1,4 +1,4 @@
-package com.example.dentalClinic.model.dto;
+package com.example.dentalClinic.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -14,17 +14,15 @@ import lombok.Setter;
 
 //DTO are objects that carry data between processes in order to reduce the number of methods calls
 //They are flat data structures that contain no business logic
-public class AddressDto {
+public class DentistDto {
 
     //....................................ATTRIBUTES...................................................
     private Long id;
-    private String street;
-    private Integer number;
-    private String location;
-    private String province;
-
+    private String name;
+    private String lastName;
+    private String tuition;
 
     //..................................EMPTY BUILDER...................................................
-    public AddressDto() {
+    public DentistDto() {
     }
 }

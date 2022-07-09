@@ -2,7 +2,7 @@ package com.example.dentalClinic.service.imp;
 
 import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Patient;
-import com.example.dentalClinic.model.dto.PatientDto;
+import com.example.dentalClinic.dto.PatientDto;
 import com.example.dentalClinic.repository.IPatientRepository;
 import com.example.dentalClinic.service.IPatientService;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -3,7 +3,7 @@ package com.example.dentalClinic.service.imp;
 
 import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Appointment;
-import com.example.dentalClinic.model.dto.AppointmentDto;
+import com.example.dentalClinic.dto.AppointmentDto;
 import com.example.dentalClinic.repository.IAppointmentRepository;
 import com.example.dentalClinic.service.IAppointmentService;
 import com.fasterxml.jackson.databind.ObjectMapper;

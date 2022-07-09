@@ -3,7 +3,7 @@ package com.example.dentalClinic.controller;
 
 import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Patient;
-import com.example.dentalClinic.model.dto.PatientDto;
+import com.example.dentalClinic.dto.PatientDto;
 import com.example.dentalClinic.service.imp.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

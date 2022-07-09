@@ -3,7 +3,7 @@ package com.example.dentalClinic.service;
 
 import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Appointment;
-import com.example.dentalClinic.model.dto.AppointmentDto;
+import com.example.dentalClinic.dto.AppointmentDto;
 
 import java.util.Set;
 

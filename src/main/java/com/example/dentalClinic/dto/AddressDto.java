@@ -1,11 +1,9 @@
-
-package com.example.dentalClinic.model.dto;
+package com.example.dentalClinic.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
 //....................................GETTER AND SETTERS..............................................
 //With this annotation generate automatically getters and setters
 @Getter
@@ -16,18 +14,17 @@ import java.time.LocalDate;
 
 //DTO are objects that carry data between processes in order to reduce the number of methods calls
 //They are flat data structures that contain no business logic
-public class PatientDto {
+public class AddressDto {
 
     //....................................ATTRIBUTES...................................................
     private Long id;
-    private String name;
-    private String lastName;
-    private String dni;
-    private LocalDate admissionDate;
+    private String street;
+    private Integer number;
+    private String location;
+    private String province;
 
 
     //..................................EMPTY BUILDER...................................................
-    public PatientDto() {
+    public AddressDto() {
     }
-
 }
