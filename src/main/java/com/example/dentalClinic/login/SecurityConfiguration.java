@@ -1,41 +1,28 @@
-/*
-package com.example.dentalClinic.login;
-//Tells to Spring that before starting the app it must load the configuration
-@Configuration
 
+package com.example.dentalClinic.login;
+
+import com.example.dentalClinic.model.AppUserRole;
+import com.example.dentalClinic.service.imp.AppUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+@Configuration
 //Indicates control the security of the entire project
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-     //................................DEPENDENCY INJECTION.........................................
-     //With this annotation indicate that it brings the dependencies of AppUSerService
     @Autowired
     private AppUserService userService;
 
-    //Indicates that injection the dependency of bean (in this case the method to encrypt the password)
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-
-    //......................OVERRIDE METHOD OF WEBSECURITYCONFIGURERADAPTER..........................
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/user/**").hasAnyAuthority(AppUserRole.ROLE_USER.name())
-                .antMatchers("/admin/**").hasAnyAuthority(AppUserRole.ROLE_ADMIN.name())
-                .anyRequest().authenticated()
-                .and().formLogin().permitAll()
-                .and().httpBasic()
-                .and().logout().permitAll()
-                .and().exceptionHandling().accessDeniedPage("/403");
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(daoAuthenticationProvider());
-    }
-
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
@@ -44,5 +31,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         provider.setUserDetailsService(userService);
         return provider;
     }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+        http.csrf().disable().authorizeRequests()
+                .anyRequest().authenticated()
+                .and().headers().frameOptions().disable()
+                .and().formLogin().permitAll()
+                .and().httpBasic()
+                .and().logout().permitAll()
+                .and().exceptionHandling().accessDeniedPage("/403");
+
+        http.csrf().disable().headers().frameOptions().disable();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(daoAuthenticationProvider());
+    }
+
+
 }
-*/

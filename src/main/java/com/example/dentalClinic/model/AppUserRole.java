@@ -1,4 +1,4 @@
-package com.example.dentalClinic.login;
+package com.example.dentalClinic.model;
 
 public enum AppUserRole {
     ROLE_USER,

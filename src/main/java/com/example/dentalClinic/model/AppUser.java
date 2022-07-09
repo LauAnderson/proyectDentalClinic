@@ -1,39 +1,32 @@
-/*
-package com.example.dentalClinic.login;
+package com.example.dentalClinic.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 
-//I use the annotation to indicate that this class is an Entity
-@Entity
-
-//....................................GETTER AND SETTERS...............................................
-//With this annotation generate automatically getters and setters
 @Getter
 @Setter
-
+@Entity
 public class AppUser implements UserDetails {
-  //....................................ATTRIBUTES...................................................
-  //These annotations are used to indicate that this is the id in the DB table
-  //We make the configurations of its value
+
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
-  private String name;
   private String userName;
   private String email;
   private String password;
-
   @Enumerated(EnumType.STRING)
   private AppUserRole userRole;
 
-  //..................................EMPTY BUILDER...................................................
   public AppUser() {
   }
 
-  //.................................BUILDER WITHOUT ID................................................
   public AppUser(String userName, String email, String password, AppUserRole userRole) {
       this.userName = userName;
       this.email = email;
@@ -45,11 +38,16 @@ public class AppUser implements UserDetails {
   @Override
   //Indicate with the list the permissions that user granted
   public Collection<? extends GrantedAuthority> getAuthorities() {
-      SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(appUserRole.name());
+      SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(userRole.name());
       return Collections.singletonList(grantedAuthority);
   }
 
-  //Hark to methods return true
+    @Override
+    public String getUsername() {
+        return this.userName;
+    }
+
+    //Hark to methods return true
   @Override
   public boolean isAccountNonExpired() {
       return true;
@@ -72,4 +70,3 @@ public class AppUser implements UserDetails {
 
 }
 
-   */
