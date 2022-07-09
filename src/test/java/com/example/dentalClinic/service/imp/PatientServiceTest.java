@@ -1,5 +1,6 @@
 package com.example.dentalClinic.service.imp;
 
+import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Address;
 import com.example.dentalClinic.model.Patient;
 import com.example.dentalClinic.service.IPatientService;
@@ -9,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @SpringBootTest
@@ -22,19 +23,16 @@ class PatientServiceTest {
 
     @Test
         //I want to test the relationship between patient and address
-    void createPatient() {
+    void createPatient() throws ResourceNotFoundException {
         //Set address
         Address address1 = new Address("Street1", 123, "location1", "province1");
-        Address address2 = new Address("Street2", 345, "location2", "province2");
         //Set patient
-        Patient patient1 = new Patient("Paul", "Mendez", "34567890", LocalDate.of(2022, 07, 04), address1);
-        Patient patient2 = new Patient("John", "Anderson", "26567591", LocalDate.of(2022, 07, 05), address2);
+        Patient patient1 = new Patient("Paul", "Mendez", "34567890", LocalDate.of(2022, 7, 4), address1);
 
         patientService.createPatient(patient1);
-        patientService.createPatient(patient2);
 
-
-        assertTrue(patientService.findAll().size() > 0);
+        Patient patientFound = patientService.readPatient(patient1.getId());
+        assertEquals(patientFound.getAddress().getId(), address1.getId());
 
     }
 
