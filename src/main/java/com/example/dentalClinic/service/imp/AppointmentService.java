@@ -62,7 +62,7 @@ public class AppointmentService implements IAppointmentService {
     }
 
     @Override
-    public Set<AppointmentDto> bringAll() {
+    public Set<AppointmentDto> findAll() {
         List<Appointment> appointments = appointmentRepository.findAll();
         Set<AppointmentDto> appointmentDtos = new HashSet<AppointmentDto>();
         for (Appointment appointment : appointments)

@@ -47,7 +47,7 @@ public class PatientController {
     @GetMapping
     //ResponseEntity<?>: return a status. In this case status ok (200)
     public ResponseEntity<?> listAll() {
-        List<PatientDto> patients = patientService.bringAll();
+        List<PatientDto> patients = patientService.findAll();
         return ResponseEntity.ok(patients);
     }
 

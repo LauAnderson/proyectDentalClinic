@@ -63,7 +63,7 @@ public class DentistService implements IDentistService {
     }
 
     @Override
-    public List<DentistDto> bringAll() {
+    public List<DentistDto> findAll() {
         List<DentistDto> dentistDtos = new ArrayList<>();
         List<Dentist> dentists = dentistRepository.findAll();
         for (Dentist dentist : dentists) {

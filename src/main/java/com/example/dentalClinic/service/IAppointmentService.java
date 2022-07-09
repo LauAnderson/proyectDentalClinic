@@ -18,5 +18,5 @@ public interface IAppointmentService {
 
     void deleteTurn(Long id) throws ResourceNotFoundException;
 
-    Set<AppointmentDto> bringAll();
+    Set<AppointmentDto> findAll();
 }

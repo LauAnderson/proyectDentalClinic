@@ -43,7 +43,7 @@ public class DentistController {
     @GetMapping
     //ResponseEntity<?>: return a status. In this case status ok (200)
     public ResponseEntity<?> listAll() {
-        List<DentistDto> dentists = dentistService.bringAll();
+        List<DentistDto> dentists = dentistService.findAll();
         return ResponseEntity.ok(dentists);
     }
 

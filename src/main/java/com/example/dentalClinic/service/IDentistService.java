@@ -18,7 +18,7 @@ public interface IDentistService {
 
     void deleteDentist(Long id) throws ResourceNotFoundException;
 
-    List<DentistDto> bringAll();
+    List<DentistDto> findAll();
 
 
 }

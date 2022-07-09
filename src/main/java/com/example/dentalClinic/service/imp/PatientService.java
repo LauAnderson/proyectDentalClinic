@@ -65,7 +65,7 @@ public class PatientService implements IPatientService {
     }
 
     @Override
-    public List<PatientDto> bringAll() {
+    public List<PatientDto> findAll() {
         List<PatientDto> patientDtos = new ArrayList<>();
         List<Patient> patients = patientRepository.findAll();
         for (Patient patient : patients) {

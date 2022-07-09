@@ -44,7 +44,7 @@ public class AppointmentController {
     @GetMapping
     //ResponseEntity<?>: return a status. In this case status ok (200)
     public ResponseEntity<?> listAll() {
-        Set<AppointmentDto> turns = appointmentService.bringAll();
+        Set<AppointmentDto> turns = appointmentService.findAll();
         return ResponseEntity.ok(turns);
 
     }

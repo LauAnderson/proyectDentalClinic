@@ -18,5 +18,5 @@ public interface IPatientService {
 
     void deletePatient(Long id) throws ResourceNotFoundException;
 
-    List<PatientDto> bringAll();
+    List<PatientDto> findAll();
 }
