@@ -5,6 +5,7 @@ import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Appointment;
 import com.example.dentalClinic.dto.AppointmentDto;
 
+import java.util.List;
 import java.util.Set;
 
 //In this class the crud methods are established, they will be implemented in the service.imp package
@@ -18,5 +19,5 @@ public interface IAppointmentService {
 
     void deleteTurn(Long id) throws ResourceNotFoundException;
 
-    Set<AppointmentDto> findAll();
+    List<AppointmentDto> findAll();
 }

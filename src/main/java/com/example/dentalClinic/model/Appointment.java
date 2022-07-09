@@ -16,14 +16,12 @@ import java.time.LocalDateTime;
 //With this annotation generate automatically getters and setters
 @Getter
 @Setter
-
 public class Appointment {
     //....................................ATTRIBUTES...................................................
     //These annotations are used to indicate that this is the id in the DB table
     //We make the configurations of its value
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
     //With this annotation I convert from LocalDateTime to String
@@ -55,6 +53,4 @@ public class Appointment {
         this.dateTime = dateTime;
         this.dentist = dentist;
     }
-
-
 }

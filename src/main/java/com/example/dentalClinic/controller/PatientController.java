@@ -1,6 +1,5 @@
 package com.example.dentalClinic.controller;
 
-
 import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Patient;
 import com.example.dentalClinic.dto.PatientDto;
@@ -11,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 //Rest: restrictions
 //Controller:This annotation allows you to receive http requests and respond to them
@@ -41,7 +39,6 @@ public class PatientController {
     public ResponseEntity<?> findPatient(@PathVariable Long id) throws ResourceNotFoundException {
         Patient patientFound = patientService.readPatient(id);
         return ResponseEntity.ok(patientFound);
-
     }
 
     @GetMapping
@@ -51,13 +48,11 @@ public class PatientController {
         return ResponseEntity.ok(patients);
     }
 
-
     //Indicate that to do this get method in the path I must pass the id number
     @DeleteMapping("/{id}")
     //ResponseEntity<?>: return a status. In this case status no content (204)
     public ResponseEntity<?> deletePatient(@PathVariable Long id) throws ResourceNotFoundException {
-        if (patientService.readPatient(id).getId().equals(id))
-            patientService.deletePatient(id);
+        patientService.deletePatient(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
@@ -65,8 +60,7 @@ public class PatientController {
     //ResponseEntity<?>: return a status. In this case status ok (200)
     public ResponseEntity<?> updatePatient(@RequestBody Patient patient) {
         patientService.modifyPatient(patient);
-        return ResponseEntity.ok(HttpStatus.OK);
-
+        return ResponseEntity.ok(null);
     }
 
 }

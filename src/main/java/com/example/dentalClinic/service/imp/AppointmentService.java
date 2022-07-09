@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -62,12 +63,13 @@ public class AppointmentService implements IAppointmentService {
     }
 
     @Override
-    public Set<AppointmentDto> findAll() {
+    public List<AppointmentDto> findAll() {
         List<Appointment> appointments = appointmentRepository.findAll();
-        Set<AppointmentDto> appointmentDtos = new HashSet<AppointmentDto>();
-        for (Appointment appointment : appointments)
-            appointmentDtos.add(mapper.convertValue(appointment, AppointmentDto.class));
-
-        return appointmentDtos;
+        //.stream(): is used to process collections of objects
+        //.map:  is a method in the Stream class that represents a functional programming concept. In simple words, the
+        // map() is used to transform one object into other by applying a function
+        return  appointments.stream()
+                .map(appointment -> mapper.convertValue(appointment, AppointmentDto.class))
+                .toList();
     }
 }

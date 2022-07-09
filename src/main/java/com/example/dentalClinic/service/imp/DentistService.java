@@ -9,15 +9,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import java.lang.module.ResolutionException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 //This annotation indicate that the class belongs to the service layer
 @Service
-
 
 //I indicate that the IDentistService interface methods will be implemented here
 public class DentistService implements IDentistService {
@@ -44,16 +41,22 @@ public class DentistService implements IDentistService {
         //Evaluate the condition that a dentist is null
         return dentistRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Don`t exist the dentist with id " + id + " please enter a correct id"));
-
     }
 
     @Override
     public void modifyDentist(Dentist dentistNewValue, Long id) throws ResourceNotFoundException {
         Dentist dentistToChange = dentistRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Dentist with id " + id + " not found"));
-        dentistToChange.setName(dentistNewValue.getName());
-        dentistToChange.setLastName(dentistNewValue.getLastName());
-        dentistToChange.setTuition(dentistNewValue.getTuition());
+
+        if(dentistNewValue.getName() != null) {
+            dentistToChange.setName(dentistNewValue.getName());
+        }
+        if (dentistNewValue.getLastName() != null) {
+            dentistToChange.setLastName(dentistNewValue.getLastName());
+        }
+        if (dentistNewValue.getTuition() != null) {
+            dentistToChange.setTuition(dentistNewValue.getTuition());
+        }
         //ORM identifies whether the save call refers to a modification or the creation of a new record
         dentistRepository.save(dentistToChange);
     }
@@ -65,7 +68,6 @@ public class DentistService implements IDentistService {
         Dentist dentistFound = dentistRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Don`t exist the dentist with id " + id + " please enter a correct id"));
         dentistRepository.deleteById(dentistFound.getId());
-
     }
 
     @Override

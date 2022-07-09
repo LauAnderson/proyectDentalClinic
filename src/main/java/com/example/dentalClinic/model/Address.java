@@ -13,7 +13,6 @@ import javax.persistence.*;
 //....................................GETTER AND SETTERS...............................................
 //With this annotation generate automatically getters and setters
 @Getter @Setter
-
 public class Address {
 
     //....................................ATTRIBUTES...................................................
@@ -21,7 +20,6 @@ public class Address {
     //We make the configurations of its value: autogenerate
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
     private String street;
     private Integer number;
@@ -34,7 +32,6 @@ public class Address {
     //Create AddressDto, AddressService, AddressRepository and AddressController in the case for
     // my application needs to scale in the future. But in this project I don't use them because
     // I access from patient
-
 
 
     //..................................EMPTY BUILDER...................................................

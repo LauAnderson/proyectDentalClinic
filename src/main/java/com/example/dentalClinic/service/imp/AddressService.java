@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 //This annotation indicate that the class belongs to the service layer
 @Service
-
-
 //I indicate that the IDentistService interface methods will be implemented here
 public class AddressService implements IAddressService {
     //................................DEPENDENCY INJECTION.........................................
@@ -26,8 +24,7 @@ public class AddressService implements IAddressService {
     @Override
     public Address readAddress(Long id) {
         //Evaluate the condition that a dentist is null
-        Address addressFound = addressRepository.findById(id).orElse(null);
-        return addressFound;
+        return addressRepository.findById(id).orElse(null);
     }
 
     @Override

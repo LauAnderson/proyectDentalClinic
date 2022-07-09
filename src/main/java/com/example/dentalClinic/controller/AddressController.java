@@ -48,6 +48,6 @@ public class AddressController {
     //ResponseEntity<?>: return a status. In this case status ok (200)
     public ResponseEntity<?> updateDentist(@RequestBody Address address) {
         addressService.modifyAddress(address);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok(null);
     }
 }

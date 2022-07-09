@@ -46,7 +46,6 @@ public class PatientService implements IPatientService {
 
     }
 
-
     @Override
     public void modifyPatient(Patient patient) {
         //ORM identifies whether the save call refers to a modification or the creation of a new record
