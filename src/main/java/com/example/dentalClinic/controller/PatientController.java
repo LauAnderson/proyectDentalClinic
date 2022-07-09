@@ -37,7 +37,7 @@ public class PatientController {
     //Indicate that to do this get method in the path I must pass the id number
     @GetMapping("/{id}")
     //ResponseEntity<?>: if patientId exists return a status. In this case status ok (200)
-    //Else return status not found (400)
+    //Else return status not found (404)
     public ResponseEntity<?> findPatient(@PathVariable Long id) throws ResourceNotFoundException {
         Patient patientFound = patientService.readPatient(id);
         return ResponseEntity.ok(patientFound);
