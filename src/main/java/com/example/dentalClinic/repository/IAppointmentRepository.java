@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 
 //This extends contains API for basic CRUD operations and also API for pagination and sorting
-public interface ITurnRepository extends JpaRepository<Appointment, Long> {
+public interface IAppointmentRepository extends JpaRepository<Appointment, Long> {
 }

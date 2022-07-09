@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 
 //DTO are objects that carry data between processes in order to reduce the number of methods calls
 //They are flat data structures that contain no business logic.
-public class TurnDto {
+public class AppointmentDto {
 
     //....................................ATTRIBUTES...................................................
     private Long id;
@@ -30,6 +30,6 @@ public class TurnDto {
     private LocalDateTime dateTime;
 
     //..................................EMPTY BUILDER...................................................
-    public TurnDto() {
+    public AppointmentDto() {
     }
 }
