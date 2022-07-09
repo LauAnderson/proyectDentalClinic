@@ -4,10 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
-
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 //......................................TABLE IN DB...................................................
 //With this annotation it indicates that dentist is an entity in the db and that it creates a table with that name
@@ -36,7 +35,7 @@ public class Dentist {
     //FetchType.LAZY: the object is initialized only when required
     @OneToMany(mappedBy = "dentist", fetch = FetchType.LAZY)
     @JsonIgnore
-    private Set<Appointment> appointments = new HashSet<>();
+    private List<Appointment> appointments = new ArrayList<>();
 
 
     //..................................EMPTY BUILDER...................................................

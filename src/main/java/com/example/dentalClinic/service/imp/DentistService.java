@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.lang.module.ResolutionException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,9 +48,14 @@ public class DentistService implements IDentistService {
     }
 
     @Override
-    public void modifyDentist(Dentist dentist) {
+    public void modifyDentist(Dentist dentistNewValue, Long id) throws ResourceNotFoundException {
+        Dentist dentistToChange = dentistRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Dentist with id " + id + " not found"));
+        dentistToChange.setName(dentistNewValue.getName());
+        dentistToChange.setLastName(dentistNewValue.getLastName());
+        dentistToChange.setTuition(dentistNewValue.getTuition());
         //ORM identifies whether the save call refers to a modification or the creation of a new record
-        dentistRepository.save(dentist);
+        dentistRepository.save(dentistToChange);
     }
 
     @Override

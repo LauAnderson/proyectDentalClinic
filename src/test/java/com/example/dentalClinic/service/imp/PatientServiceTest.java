@@ -23,7 +23,7 @@ class PatientServiceTest {
 
     @Test
         //I want to test the relationship between patient and address
-    void createPatient() throws ResourceNotFoundException {
+    void verifyRelationshipPatientAndAddress() throws ResourceNotFoundException {
         //Set address
         Address address1 = new Address("Street1", 123, "location1", "province1");
         //Set patient

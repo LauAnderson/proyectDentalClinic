@@ -14,7 +14,7 @@ public interface IDentistService {
 
     Dentist readDentist(Long id) throws ResourceNotFoundException;
 
-    void modifyDentist(Dentist dentist);
+    void modifyDentist(Dentist dentistNewValue , Long id) throws ResourceNotFoundException;
 
     void deleteDentist(Long id) throws ResourceNotFoundException;
 

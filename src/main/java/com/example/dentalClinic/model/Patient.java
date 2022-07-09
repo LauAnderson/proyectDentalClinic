@@ -4,11 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
-
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 //......................................TABLE IN DB...................................................
 //With this annotation it indicates that patient is an entity in the db and that it creates a table with that name
@@ -46,7 +45,7 @@ public class Patient {
     //The OneToMany relationship indicates that one patient have many turns
     @OneToMany(mappedBy = "patient")
     @JsonIgnore
-    private Set<Appointment> appointments = new HashSet<>();
+    private List<Appointment> appointments = new ArrayList<>();
 
 
     //..................................EMPTY BUILDER...................................................

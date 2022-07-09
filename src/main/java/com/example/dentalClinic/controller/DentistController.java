@@ -51,17 +51,14 @@ public class DentistController {
     @DeleteMapping("/{id}")
     //ResponseEntity<?>: return a status. In this case status no content (204)
     public ResponseEntity<?> deleteDentist(@PathVariable Long id) throws ResourceNotFoundException {
-        if (dentistService.readDentist(id).getId().equals(id))
-            dentistService.deleteDentist(id);
+        dentistService.deleteDentist(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     //ResponseEntity<?>: return a status. In this case status ok (200)
-    public ResponseEntity<?> updateDentist(@RequestBody Dentist dentist) {
-        dentistService.modifyDentist(dentist);
-        return ResponseEntity.ok(HttpStatus.OK);
+    public ResponseEntity<?> updateDentist(@PathVariable Long id, @RequestBody Dentist dentist) throws ResourceNotFoundException {
+        dentistService.modifyDentist(dentist, id);
+        return ResponseEntity.ok(null);
     }
-
-
 }
