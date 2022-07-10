@@ -26,8 +26,22 @@ public class AddressService implements IAddressService {
     }
 
     @Override
-    public void modifyAddress(Address address) {
-        addressRepository.save(address);
+    public void modifyAddress(Address addressNewValue, Long id) throws ResourceNotFoundException {
+        Address addressToChange = addressRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Don`t find an address with id " +id));
+        if (addressNewValue.getStreet() != null){
+            addressToChange.setStreet(addressNewValue.getStreet());
+        }
+        if(addressNewValue.getNumber() != null){
+            addressToChange.setNumber(addressNewValue.getNumber());
+        }
+        if (addressNewValue.getLocation() != null){
+            addressToChange.setLocation(addressToChange.getLocation());
+        }
+        if (addressNewValue.getProvince() != null){
+            addressToChange.setProvince(addressNewValue.getProvince());
+        }
+        addressRepository.save(addressToChange);
     }
 
     @Override

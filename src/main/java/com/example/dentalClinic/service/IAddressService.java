@@ -9,7 +9,7 @@ public interface IAddressService {
 
     Address readAddress(Long id) throws ResourceNotFoundException;
 
-    void modifyAddress(Address address);
+    void modifyAddress(Address addressNewValue, Long id) throws ResourceNotFoundException;
 
     void deleteAddress(Long id)throws ResourceNotFoundException;
 }

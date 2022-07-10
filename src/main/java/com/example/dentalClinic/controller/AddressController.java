@@ -32,9 +32,9 @@ public class AddressController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping
-    public ResponseEntity<?> updateAddress(@RequestBody Address address) {
-        addressService.modifyAddress(address);
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateAddress(@PathVariable Long id, @RequestBody Address address) throws ResourceNotFoundException{
+        addressService.modifyAddress(address, id);
         return ResponseEntity.ok(null);
     }
 }
