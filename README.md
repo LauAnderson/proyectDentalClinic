@@ -130,7 +130,7 @@ Find an appointment by id
 Status code:
 - **200:** if the request is ok
 - **404:** Appointment with this id, is not found
-- 
+ 
 `Post /appointments`
 
 Create an appointment
