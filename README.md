@@ -22,11 +22,9 @@ authentication for endpoints: `/patients`, `/dentists`, `/appointments` and `/ad
 
 
 
+
 ### API
-This application exposes the following endpoints:
-
-
-
+This application exposes the following endpoints
 
 #### PATIENTS
 
@@ -158,6 +156,11 @@ Status code:
 - **200:** if the request is ok
 - **404:** Appointment with this id, is not found
 
+
+
+#### TEST COLLECTION POSTMAN
+- [dental_clinic_postman_collection](https://github.com/LauAnderson/proyectDentalClinic/blob/main/postman/dental_clinic.postman_collection.json) 
+- [dental_clinic_test.postman_collection](https://github.com/LauAnderson/proyectDentalClinic/blob/main/postman/dental_clinic_test.postman_collection.json)
 
 
 
