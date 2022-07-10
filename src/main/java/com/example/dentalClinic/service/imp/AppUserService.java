@@ -1,5 +1,4 @@
 package com.example.dentalClinic.service.imp;
-
 import com.example.dentalClinic.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,3 +19,4 @@ public class AppUserService implements UserDetailsService {
     }
 
 }
+

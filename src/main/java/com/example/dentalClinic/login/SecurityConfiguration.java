@@ -1,7 +1,4 @@
-
 package com.example.dentalClinic.login;
-
-import com.example.dentalClinic.model.AppUserRole;
 import com.example.dentalClinic.service.imp.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -35,7 +32,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable().authorizeRequests()
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/patients/**").permitAll()
+                .antMatchers("/dentists/**").permitAll()
+                .antMatchers("/appointments/**").permitAll()
+                .antMatchers("/address/**").permitAll()
                 .anyRequest().authenticated()
                 .and().headers().frameOptions().disable()
                 .and().formLogin().permitAll()

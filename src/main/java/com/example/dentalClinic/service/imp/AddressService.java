@@ -1,5 +1,6 @@
 package com.example.dentalClinic.service.imp;
 
+import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Address;
 import com.example.dentalClinic.repository.IAddressRepository;
 import com.example.dentalClinic.service.IAddressService;
@@ -10,9 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 //I indicate that the IDentistService interface methods will be implemented here
 public class AddressService implements IAddressService {
-    //................................DEPENDENCY INJECTION.........................................
-    //With this annotation indicate that it brings the dependencies of IDentistRepository interface of
-    //repository package
     @Autowired
     IAddressRepository addressRepository;
 
@@ -22,19 +20,20 @@ public class AddressService implements IAddressService {
     }
 
     @Override
-    public Address readAddress(Long id) {
-        //Evaluate the condition that a dentist is null
-        return addressRepository.findById(id).orElse(null);
+    public Address readAddress(Long id) throws ResourceNotFoundException {
+        return addressRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Don`t found an address with the id " + id + " please enter a correct id"));
     }
 
     @Override
     public void modifyAddress(Address address) {
-        //ORM identifies whether the save call refers to a modification or the creation of a new record
         addressRepository.save(address);
     }
 
     @Override
-    public void deleteAddress(Long id) {
-        addressRepository.deleteById(id);
+    public void deleteAddress(Long id) throws ResourceNotFoundException{
+        Address addressFound = addressRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Don`t found an address with the id " + id + " please enter a correct id"));
+        addressRepository.deleteById(addressFound.getId());
     }
 }

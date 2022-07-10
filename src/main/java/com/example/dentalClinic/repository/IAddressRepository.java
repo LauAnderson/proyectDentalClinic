@@ -1,5 +1,4 @@
 package com.example.dentalClinic.repository;
-
 import com.example.dentalClinic.model.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,4 @@
 package com.example.dentalClinic.service.imp;
-
-
 import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Appointment;
 import com.example.dentalClinic.dto.AppointmentDto;
@@ -9,21 +7,10 @@ import com.example.dentalClinic.service.IAppointmentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-//This annotation indicate that the class belongs to the service layer
 @Service
-
-
-//I indicate that the ITurnService interface methods will be implemented here
 public class AppointmentService implements IAppointmentService {
-    //................................DEPENDENCY INJECTION.........................................
-    //With this annotation indicate that it brings the dependencies of ITurnRepository interface of
-    //repository package
     @Autowired
     IAppointmentRepository appointmentRepository;
 
@@ -31,8 +18,6 @@ public class AppointmentService implements IAppointmentService {
     @Autowired
     ObjectMapper mapper;
 
-
-    //..................................OVERRIDE METHODS.............................................
     @Override
     public Appointment createTurn(AppointmentDto turn) {
         Appointment newAppointment = mapper.convertValue(turn, Appointment.class);
@@ -50,9 +35,14 @@ public class AppointmentService implements IAppointmentService {
     }
 
     @Override
-    public void modifyTurn(Appointment appointment) {
-        //ORM identifies whether the save call refers to a modification or the creation of a new record
-        appointmentRepository.save(appointment);
+    public void modifyTurn(Appointment appointmentNewValue, Long id) throws ResourceNotFoundException {
+        Appointment appointmentToChange = appointmentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Appointment with id " + id + " not found"));
+        if (appointmentNewValue.getDateTime() != null) {
+            appointmentToChange.setDateTime(appointmentNewValue.getDateTime());
+
+            appointmentRepository.save(appointmentToChange);
+        }
     }
 
     @Override

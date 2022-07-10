@@ -1,5 +1,4 @@
 package com.example.dentalClinic.login;
-
 import com.example.dentalClinic.model.AppUser;
 import com.example.dentalClinic.model.AppUserRole;
 import com.example.dentalClinic.repository.IUserRepository;
@@ -16,7 +15,7 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     IUserRepository userRepository;
 
-     @Override
+    @Override
     public void run(ApplicationArguments args) throws Exception {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String passAdmin = passwordEncoder.encode("1234");
@@ -28,3 +27,4 @@ public class DataLoader implements ApplicationRunner {
         userRepository.save(new AppUser("user", "user@email.com", passUser, AppUserRole.ROLE_USER));
     }
 }
+
