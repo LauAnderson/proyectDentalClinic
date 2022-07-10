@@ -1,4 +1,5 @@
 package com.example.dentalClinic.service.imp;
+
 import com.example.dentalClinic.dto.PatientDto;
 import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Patient;
@@ -7,7 +8,7 @@ import com.example.dentalClinic.service.IPatientService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Service
@@ -31,9 +32,22 @@ public class PatientService implements IPatientService {
     }
 
     @Override
-    public void modifyPatient(Patient patient) {
-        patientRepository.save(patient);
-
+    public void modifyPatient(Patient patientNewValue, Long id) throws ResourceNotFoundException {
+        Patient patientToChange = patientRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Don`t find a patient with id " + id));
+        if (patientNewValue.getName() != null) {
+            patientToChange.setName(patientNewValue.getName());
+        }
+        if (patientNewValue.getLastName() != null) {
+            patientToChange.setLastName(patientNewValue.getLastName());
+        }
+        if (patientNewValue.getDni() != null) {
+            patientToChange.setDni(patientNewValue.getDni());
+        }
+        if (patientNewValue.getAdmissionDate() != null) {
+            patientToChange.setAdmissionDate(patientNewValue.getAdmissionDate());
+        }
+        patientRepository.save(patientToChange);
     }
 
     @Override

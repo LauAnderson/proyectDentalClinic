@@ -9,7 +9,7 @@ public interface IPatientService {
 
     Patient readPatient(Long id) throws ResourceNotFoundException;
 
-    void modifyPatient(Patient patient);
+    void modifyPatient(Patient patientNewValue, Long id) throws ResourceNotFoundException;
 
     void deletePatient(Long id) throws ResourceNotFoundException;
 
