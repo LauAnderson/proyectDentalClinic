@@ -1,4 +1,5 @@
 package com.example.dentalClinic.controller;
+
 import com.example.dentalClinic.exceptions.ResourceNotFoundException;
 import com.example.dentalClinic.model.Address;
 import com.example.dentalClinic.service.imp.AddressService;
@@ -13,6 +14,7 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
+
     @PostMapping
     public ResponseEntity<?> saveAddress(@RequestBody Address address) {
         Address newAddress = addressService.createAddress(address);
@@ -26,14 +28,14 @@ public class AddressController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteAddress(@PathVariable Long id) throws ResourceNotFoundException{
+    public ResponseEntity<?> deleteAddress(@PathVariable Long id) throws ResourceNotFoundException {
         if (addressService.readAddress(id).getId().equals(id))
             addressService.deleteAddress(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateAddress(@PathVariable Long id, @RequestBody Address address) throws ResourceNotFoundException{
+    public ResponseEntity<?> updateAddress(@PathVariable Long id, @RequestBody Address address) throws ResourceNotFoundException {
         addressService.modifyAddress(address, id);
         return ResponseEntity.ok(null);
     }
